@@ -1,0 +1,112 @@
+/* =========================
+   INTERLUDE – PHILOSOPHY
+   Paper × Forest × Water
+========================= */
+
+.interlude{
+  position:relative;
+  height:80vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+
+  /* 水面になる背景 */
+  background-image:
+    linear-gradient(
+      rgba(255,255,255,0.04),
+      rgba(255,255,255,0.04)
+    ),
+    url("../assets/images/nature-014.png");
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+
+  background-color:#f1ebdc;
+}
+
+/* =========================
+   PAPER VEIL
+========================= */
+
+.interlude::before{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(246,243,234,0.42) 0%,
+      rgba(246,243,234,0.58) 40%,
+      rgba(241,235,220,0.78) 100%
+    );
+
+  pointer-events:none;
+  z-index:1;
+}
+
+
+/* =========================
+   COPY – FROM WATER TO AIR
+========================= */
+
+.interlude-text{
+  position:relative;
+  z-index:3;
+
+  font-family:"Shippori Mincho B1", serif;
+  font-size:clamp(2.8rem, 5vw, 5.6rem);
+  letter-spacing: 0.20em; /* 0.22 → 0.20 */
+  line-height:1.35;
+  text-align:center;
+
+  color:rgba(60,55,45,0.92);
+
+  text-shadow:
+    0 0 18px rgba(200,180,130,0.16);
+
+  opacity:0;
+  filter:blur(12px);
+  transform:translateY(42px);
+
+  transition:
+    opacity 2.2s ease,
+    transform 2.2s ease,
+    filter 2.8s ease;
+
+  transition-delay: 0.2s;
+}
+
+.interlude.is-visible .interlude-text{
+  opacity:1;
+  filter:blur(0);
+  transform:translateY(0);
+  transform:translateX(27px);
+}
+
+/* =========================
+   RIPPLE CANVAS
+========================= */
+
+.interlude canvas{
+  position:absolute !important;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width:900px){
+  .interlude{
+    height:70vh;
+  }
+
+  .interlude-text{
+    font-size:clamp(2.2rem, 6vw, 3.8rem);
+    letter-spacing:0.16em;
+  }
+}

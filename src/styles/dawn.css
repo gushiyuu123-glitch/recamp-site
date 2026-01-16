@@ -1,0 +1,188 @@
+/* ======================================
+   DAWN — After Campfire (Final Stable)
+====================================== */
+
+.dawn{
+  position:relative;
+  width:100%;
+  height:100vh;          /* 固定高さ */
+  min-height:100vh;       /* → 演出でズレない */
+  overflow:hidden;
+
+  background:
+    url("../assets/images/dawn.png")
+    center / cover no-repeat;
+
+  filter:
+    brightness(0.98)
+    contrast(1.05)
+    saturate(0.95);
+
+  isolation:isolate;
+  z-index:0;              /* ★上にかぶらないよう安定値 */
+}
+
+/* ======================================
+   LIGHT VEIL — 柔らかい朝の発光
+====================================== */
+
+.dawn::before{
+  content:"";
+  position:absolute;
+  inset:-6%;              /* ★ -10% → -6% に縮小（漏れ防止） */
+  pointer-events:none;
+  z-index:1;
+
+  background:
+    radial-gradient(
+      circle at 78% 22%,
+      rgba(255,205,140,0.32),
+      rgba(255,205,140,0.00) 58%
+    ),
+    radial-gradient(
+      circle at 55% 55%,
+      rgba(170,200,220,0.10),
+      rgba(0,0,0,0.00) 62%
+    );
+
+  filter:blur(16px);
+  opacity:0;
+  transform:scale(1.01);
+
+  transition:
+    opacity 2.4s ease,
+    transform 2.6s cubic-bezier(0.22,0.61,0.36,1),
+    filter 3s ease;
+}
+
+.dawn.is-visible::before{
+  opacity:1;
+  transform:scale(1);
+  filter:blur(22px);
+}
+
+/* ======================================
+   FOG — うっすら漂う霧
+====================================== */
+
+.dawn-fog{
+  position:absolute;
+  inset:-10%;            /* ★ -20% → -10%（下漏れ改善） */
+  z-index:2;
+  pointer-events:none;
+
+  background:
+    radial-gradient(circle at 30% 60%, rgba(255,255,255,0.06), rgba(255,255,255,0.00) 56%),
+    radial-gradient(circle at 70% 45%, rgba(255,255,255,0.05), rgba(255,255,255,0.00) 60%),
+    linear-gradient(180deg, rgba(0,0,0,0.20) 0%, rgba(0,0,0,0.30) 48%, rgba(0,0,0,0.52) 100%);
+
+  filter:blur(20px);
+  opacity:0;
+
+  animation: dawnFog 11s ease-in-out infinite;
+  transition: opacity 1.8s ease;
+}
+
+.dawn.is-visible .dawn-fog{
+  opacity:1;
+}
+
+@keyframes dawnFog{
+  0%   { transform:translate3d(-1.2%, 0.4%, 0) scale(1.01); }
+  50%  { transform:translate3d( 1.4%, -0.3%, 0) scale(1.03); }
+  100% { transform:translate3d(-1.2%, 0.4%, 0) scale(1.01); }
+}
+
+/* ======================================
+   LAYOUT
+====================================== */
+
+.dawn-inner{
+  position:relative;
+  z-index:3;
+  height:100%;
+  width:100%;
+  display:flex;
+  align-items:flex-start;
+  justify-content:flex-start;
+}
+
+/* コピー位置（裕人専用スライドポイント） */
+.dawn-copy-wrap{
+  position:relative;
+  transform: translate(22.5vw, 40vh);
+}
+
+/* ======================================
+   COPY — 出現 → 余韻 → 霧散
+====================================== */
+
+.dawn-copy{
+  position:relative;
+  z-index:4;
+
+  font-family:"Shippori Mincho B1", serif;
+  font-size:clamp(2.0rem, 3.6vw, 3.4rem);
+  letter-spacing:0.15em;
+  line-height:1.6;
+
+  color:rgba(255,245,235,0.88);
+  text-shadow:
+    0 0 14px rgba(255,200,140,0.10),
+    0 0 32px rgba(255,200,140,0.06);
+
+  opacity:0;
+  transform:translateY(26px) scale(0.985);
+  filter:blur(16px);
+
+  transition:
+    opacity 2.4s ease,
+    transform 2.4s cubic-bezier(0.16,0.6,0.3,1),
+    filter 3s ease;
+}
+
+.dawn.is-visible .dawn-copy{
+  opacity:1;
+  transform:translateY(0) scale(1);
+  filter:blur(0);
+
+  animation: dawnFadeOut 7s cubic-bezier(0.22,0.61,0.36,1) forwards;
+  animation-delay: 3s;
+}
+
+/* → 余韻で消える（DOMサイズに干渉しない） */
+@keyframes dawnFadeOut{
+  0%{
+    opacity:1;
+    transform:translateY(0) scale(1);
+    filter:blur(0);
+  }
+  60%{
+    opacity:0.9;
+    transform:translateY(-4px) scale(1.01);
+    filter:blur(0.6px);
+  }
+  100%{
+    opacity:0;
+    transform:translateY(-18px) scale(1.02);
+    filter:blur(8px);
+  }
+}
+
+/* ======================================
+   Dawn 終端 — sticky干渉カット
+====================================== */
+
+.dawn-end{
+  width:100%;
+  height:6vh;       /* ★ これが AfterDawn を正常位置に戻す */
+}
+
+/* ======================================
+   A11Y: motion reduce
+====================================== */
+
+@media (prefers-reduced-motion: reduce){
+  .dawn-fog{ animation:none; }
+  .dawn.is-visible .dawn-copy{ animation:none; }
+}

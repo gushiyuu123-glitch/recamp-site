@@ -1,0 +1,89 @@
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 0 0 12vh 8vw;
+  color: #f5f1e8;
+  z-index: 0;  /* ← これが確定修正！ */
+}
+
+/* ===== 背景 ===== */
+.hero-bg{
+  position:absolute;
+  inset:0;
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+  filter:brightness(0.9) contrast(1.05);
+  transform:scale(1.02);
+  animation:breathe 6s ease-in-out 1;
+  z-index:-3;
+}
+
+/* 光レイヤー */
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    140deg,
+    rgba(255,230,190,0.2),
+    rgba(50,70,50,0.5)
+  );
+  mix-blend-mode:overlay;
+  z-index:-2;
+}
+
+/* 朝霧 */
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(
+    circle at 50% 70%,
+    rgba(255,255,255,0.1),
+    transparent 75%
+  );
+  mix-blend-mode:soft-light;
+  opacity:0.6;
+  animation:mist 18s ease-in-out infinite alternate;
+  z-index:-1;
+}
+
+/* ===== テキスト ===== */
+.hero-content h1{
+  font-size:4.5rem;
+  letter-spacing:0.06em;
+  color:var(--light);
+  text-shadow:0 0 40px rgba(255,200,120,0.35);
+  opacity:0;
+  transform:translateY(25px);
+  animation:fadeIn 2s ease forwards;
+}
+
+.hero-content p{
+  margin-top:1rem;
+  font-size:1.15rem;
+  opacity:0;
+  transform:translateY(25px);
+  animation:fadeIn 2.5s ease forwards;
+  animation-delay:0.6s;
+}
+
+/* 縦組みコピー */
+.vertical-text{
+  position:absolute;
+  right:6vw;
+  top:18vh;
+  writing-mode:vertical-rl;
+  font-size:1rem;
+  letter-spacing:0.2em;
+  opacity:0.7;
+  color:var(--light);
+  text-shadow:0 0 15px rgba(255,220,150,0.25);
+  animation:fadeIn 3s ease forwards;
+  animation-delay:1s;
+}

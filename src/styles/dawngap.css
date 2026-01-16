@@ -1,0 +1,31 @@
+/* ======================================
+   DAWN GAP — Soft Fade (境界極薄)
+====================================== */
+
+.dawn-gap {
+  height: 20vh;
+  width: 100%;
+
+  background:
+    /* Dawn の光の残響（もっと薄く） */
+    radial-gradient(
+      circle at 50% 30%,
+      rgba(255,255,255,0.28) 0%,
+      rgba(245,247,248,0.16) 45%,
+      rgba(255,255,255,0.96) 100%
+    ),
+    /* 上下の境界を限りなく薄くする */
+    linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.97) 0%,
+      rgba(255,255,255,0.985) 50%,
+      rgba(255,255,255,1) 100%
+    );
+}
+
+/* SP */
+@media (max-width: 780px) {
+  .dawn-gap {
+    height: 18vh;
+  }
+}

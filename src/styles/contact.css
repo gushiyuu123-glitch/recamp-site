@@ -1,0 +1,128 @@
+/* ======================================
+   CONTACT — Minimal & Real（FINAL 120pt）
+====================================== */
+
+.contact-section {
+  padding: 20vh 0 18vh;
+  background: #ffffff;
+}
+
+.contact-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 6vw;
+}
+
+/* Eyebrow */
+.contact-eyebrow {
+  font-size: 0.6rem;
+  letter-spacing: 0.40em;
+  color: rgba(110,105,96,0.55);
+  margin-bottom: 2.2vh;
+}
+
+/* Title（1行固定・改行禁止） */
+.contact-title {
+  font-family: "Shippori Mincho B1", serif;
+  font-size: clamp(1.55rem, 2.4vw, 2.05rem);
+  line-height: 1.75;
+  letter-spacing: 0.10em;
+  font-weight: 300;
+  color: #2f2a21;
+  margin-bottom: 5vh;
+
+  /* 完全に改行させない */
+  white-space: nowrap;     
+  max-width: none;         /* ← 32rem 制限を削除し必須 */
+
+  opacity: 0;
+  transform: translateY(18px);
+  filter: blur(14px);
+  transition:
+    opacity 1.4s ease,
+    transform 1.4s ease,
+    filter 1.4s ease;
+}
+
+
+.contact-section.is-visible .contact-title {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* Lead（説明しない説明） */
+.contact-lead {
+  font-size: 0.82rem;
+  line-height: 2.2;
+  letter-spacing: 0.06em;
+  color: #585147;
+  margin-bottom: 8vh;
+}
+
+/* Form */
+.contact-form {
+  border-top: 1px solid rgba(0,0,0,0.07);
+  padding-top: 6.5vh;
+}
+
+/* Field */
+.contact-field {
+  margin-bottom: 4.8vh;
+}
+
+.contact-field label {
+  display: block;
+  font-size: 0.62rem;
+  letter-spacing: 0.20em;
+  color: rgba(80,75,68,0.85);
+  margin-bottom: 1.2vh;
+}
+
+/* Input */
+.contact-field input,
+.contact-field textarea {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid rgba(0,0,0,0.18);
+  padding: 0.65rem 0;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  background: transparent;
+  color: #2f2a21;
+  transition: border-color 0.25s ease;
+}
+
+.contact-field input:focus,
+.contact-field textarea:focus {
+  outline: none;
+  border-bottom-color: rgba(0,0,0,0.36);
+}
+
+/* Submit（細い線 × 弱い主張） */
+.contact-submit {
+  margin-top: 7vh;
+  background: none;
+  border: 1px solid rgba(0,0,0,0.28);
+  padding: 0.85rem 2.8rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.24em;
+  color: #2f2a21;
+  cursor: pointer;
+  transition: 0.28s ease;
+}
+
+.contact-submit:hover {
+  background: rgba(0,0,0,0.035);
+}
+
+/* SP */
+@media (max-width: 780px) {
+  .contact-section {
+    padding: 16vh 0 14vh;
+  }
+
+  .contact-lead {
+    margin-bottom: 6vh;
+  }
+}

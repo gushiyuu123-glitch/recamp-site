@@ -1,0 +1,187 @@
+/* =========================
+   ABOUT – COMPLETE FINAL
+   Paper × Ink × Forest
+========================= */
+
+.about{
+  position:relative;
+  display:grid;
+  grid-template-columns: 55% 45%;
+  min-height:100vh;
+  overflow:hidden;
+
+  /* JS制御用 */
+  --about-glow-y: 0px;
+}
+
+/* =========================
+   LEFT – PAPER
+========================= */
+
+.about-paper{
+  position:relative;
+  background:
+    linear-gradient(
+      180deg,
+      #f4eedc 0%,
+      #efe4cb 100%
+    );
+  padding:18vh 10vw;
+  z-index:2;
+
+  box-shadow:
+    inset -1px 0 0 rgba(0,0,0,0.08);
+}
+
+.about-paper::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    url("../assets/images/paper-texture.png")
+    repeat;
+  opacity:0.037;
+  pointer-events:none;
+}
+
+/* =========================
+   RIGHT – FOREST
+========================= */
+
+.about::before{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:
+    url("../assets/images/forest-about.jpg")
+    center / cover no-repeat;
+
+  opacity:0.79;
+  filter:
+    brightness(1.04)
+    saturate(0.88);
+
+  mix-blend-mode: multiply;
+  z-index:0;
+
+  /* ↓ ここが肝 */
+  -webkit-mask-image:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 6%,
+      black 40%,
+      transparent 30%
+    );
+  mask-image:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 12%,
+      black 88%,
+      transparent 100%
+    );
+}
+
+/* =========================
+   INNER
+========================= */
+
+.about-inner{
+  position:relative;
+  z-index:3;
+  display:flex;
+  gap:9vw;
+  align-items:flex-start;
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.about-definition h2{
+  font-family:"Cormorant Garamond",serif;
+  font-size:3.2rem;
+  writing-mode: vertical-rl;
+  letter-spacing:0.32em;
+  color:rgba(47,42,33,0.82);
+
+  opacity:0;
+  transform:
+    rotate(180deg)
+    translateY(24px);
+  transition:
+    opacity 1.6s ease,
+    transform 1.6s ease;
+}
+
+.about.is-visible .about-definition h2{
+  opacity:1;
+  transform:
+    rotate(180deg)
+    translateY(0);
+}
+
+/* =========================
+   TEXT
+========================= */
+
+.about-content{
+  max-width:520px;
+  line-height:2.45;
+  font-size:1.05rem;
+  color:rgba(47,42,33,0.88);
+  transform: translateX(1.6vw);
+}
+
+.about-content .lead{
+  font-size:1.18rem;
+  margin-bottom:4.2rem;
+  opacity:0;
+  transform: translateY(18px);
+  transition:
+    opacity 1.4s ease,
+    transform 1.4s ease;
+  transition-delay:0.15s;
+}
+
+.about.is-visible .about-content .lead{
+  opacity:1;
+  transform: translateY(0);
+}
+
+/* =========================
+   BOTTOM GLOW（太陽の余韻）
+========================= */
+
+.about::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-10px;
+  height:8vh;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(244,238,220,0) 0%,
+      rgba(244,238,220,0.35) 45%,
+      rgba(244,238,220,0.75) 75%,
+      rgba(244,238,220,1) 100%
+    );
+
+  pointer-events:none;
+  z-index:4;
+
+  /* JSから揺らす */
+  transform: translateY(var(--about-glow-y));
+  transition: transform 0.25s ease-out;
+}
+
+@media (max-width: 900px){
+  .about::after{
+    height:6vh;
+  }
+}

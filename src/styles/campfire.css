@@ -1,0 +1,155 @@
+/* =========================
+   CAMPFIRE – Night Scene
+   重厚 / 静けさ / 温度
+========================= */
+
+.campfire {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+
+  background:
+    url("../assets/images/campfire.png")
+    center / cover no-repeat;
+
+  /* 夜の深さ＆炎の締まり */
+  filter:
+    brightness(0.72)
+    contrast(1.18)
+    saturate(0.90);
+}
+
+
+/* =========================
+   FIRE LIGHT – Air wobble glow
+   （炎で周囲の空気が揺れる光）
+========================= */
+.campfire::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at 46% 65%,         /* 位置を“焚き火の少し左寄り”に最適化 */
+      rgba(255,150,60,0.22),
+      rgba(0,0,0,0.82)
+    );
+
+  mix-blend-mode: screen;
+  animation: campfireLight 7.6s ease-in-out infinite;
+
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes campfireLight {
+  0%   { opacity: 0.10; filter: blur(14px); }
+  45%  { opacity: 0.25; filter: blur(30px); }
+  100% { opacity: 0.13; filter: blur(18px); }
+}
+
+
+/* =========================
+   AUTO-SPARKS（自然に舞う火花）
+========================= */
+
+.embers {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.spark{
+  position:absolute;
+  border-radius:50%;
+  pointer-events:none;
+  opacity:0;
+
+  /* 🔥 光の芯＋幻想グラデーション */
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,140,60,1) 0%,     /* 芯：赤橙 */
+      rgba(255,190,110,0.9) 35%, /* 金 */
+      rgba(255,220,170,0.35) 55%,
+      rgba(255,220,170,0.0) 80%
+    );
+
+  /* 幻想の鍵 */
+  mix-blend-mode: screen;
+  filter:
+    blur(1.5px)
+    drop-shadow(0 0 6px rgba(255,180,120,0.45))
+    drop-shadow(0 0 14px rgba(255,140,60,0.25));
+
+  transform-origin: center;
+}
+
+
+/* =========================
+   COPY – 焚火の光で浮く文字
+========================= */
+/* =========================
+   WRAP – 位置ごと浮かび上がる（薄いフェード）
+========================= */
+
+.campfire-copy-wrap {
+  position: relative;
+  z-index: 4;
+
+  /* 位置（自由に調整OK） */
+  transform: translate(-26vw, 15vh);
+
+  /* 登場前 */
+  opacity: 0;
+  filter: blur(10px);
+  transform-origin: center;
+
+  transition:
+    opacity 2.4s ease,
+    filter 3.2s ease,
+    transform 3s cubic-bezier(0.16, 0.6, 0.3, 1);
+}
+
+/* 表示（焚火に照らされるように） */
+.campfire.is-visible .campfire-copy-wrap {
+  opacity: 1;
+  filter: blur(0);
+  transform: translate(-26vw, 16vh) scale(1);
+}
+
+
+
+/* =========================
+   COPY – 本文の “浮き上がり”
+========================= */
+
+.campfire-copy {
+  font-family: "Shippori Mincho B1", serif;
+  font-size: clamp(2.2rem, 4vw, 3.6rem);
+  letter-spacing: 0.16em;
+  text-align: center;
+
+  color: rgba(255, 235, 215, 0.9);
+  text-shadow: 0 0 18px rgba(255, 160, 90, 0.15);
+
+  /* 登場前（闇の底） */
+  opacity: 0;
+  transform: translateY(28px) scale(0.97);
+  filter: blur(18px);
+
+  transition:
+    opacity 2.8s ease,
+    transform 2.8s cubic-bezier(0.16, 0.6, 0.3, 1),
+    filter 3.8s ease;
+}
+
+/* 表示：焚火の灯りで文字が浮かぶ */
+.campfire.is-visible .campfire-copy {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+

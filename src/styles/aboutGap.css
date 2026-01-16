@@ -1,0 +1,45 @@
+/* =========================
+   HERO → ABOUT GAP
+   Paper × Earth Prelude
+========================= */
+
+.about-gap{
+  position:relative;
+  height:22vh;
+  overflow:hidden;
+
+  /* 紙 → 土にほんの少し寄せる */
+  background:
+    linear-gradient(
+      180deg,
+      rgba(246,243,234,0) 0%,           /* Heroの空気 */
+      rgba(238,226,200,0.6) 45%,        /* 土の気配を混ぜる */
+      rgba(232,218,185,0.9) 75%,        /* 紙＋土の中間 */
+      #eadfc2 100%                      /* わずかに土色の紙 */
+    );
+}
+
+/* =========================
+   PAPER TEXTURE
+========================= */
+
+.about-gap::after{
+  content:"";
+  position:relative;
+  inset:0;
+  background:
+    url("../assets/images/paper-texture.png")
+    repeat;
+  opacity:0.035;
+  pointer-events:none;
+}
+
+/* =========================
+   RESPONSIVE – SP
+========================= */
+
+@media (max-width: 900px){
+  .about-gap{
+    height:16vh;
+  }
+}

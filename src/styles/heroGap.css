@@ -1,0 +1,39 @@
+/* =========================
+   HERO → ABOUT GAP
+   Paper × Forest Prelude
+========================= */
+
+.hero-gap{
+  position:relative;
+  height:22vh;
+  overflow:hidden;
+
+  /* About と完全同一の紙グラデーション */
+  background:
+    linear-gradient(
+      180deg,
+      #f6f3ea 0%,
+      rgba(244,238,220,0.6) 45%,
+      rgba(244,238,220,0.9) 75%,
+      #f4eedc 100%
+    );
+}
+
+/* 紙の繊維感（About と完全統一） */
+.hero-gap::after{
+  content:"";
+  position:relative;
+  inset:0;
+  background:
+    url("../assets/images/paper-texture.png")
+    repeat;
+  opacity:0.035;
+  pointer-events:none;
+}
+
+/* SP */
+@media (max-width: 900px){
+  .hero-gap{
+    height:16vh;
+  }
+}

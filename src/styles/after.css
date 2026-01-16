@@ -1,0 +1,136 @@
+/* ======================================
+   AFTER — Info Section（FINAL 120pt）
+====================================== */
+
+.after-section {
+  position: relative;
+  min-height: 54vh;
+  padding: 20vh 0 14vh;
+  overflow: hidden;
+
+  background:
+    /* 上端フェード（縫い目消し） */
+    linear-gradient(
+      to bottom,
+      rgba(255,252,248,0.88) 0%,
+      rgba(255,248,242,0.55) 10%,
+      rgba(255,255,255,0.0) 18%
+    ),
+    /* 全体ホワイトベース */
+    linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.85) 0%,
+      rgba(255,255,255,0.90) 40%,
+      rgba(255,255,255,0.94) 100%
+    ),
+    url("../assets/images/AfterDawn.png")
+      center / cover no-repeat;
+
+  filter: brightness(1.03);
+}
+
+/* =========================
+   右：主役ブロック
+========================= */
+.after-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 5vw  15vw 10vh 6vw;
+}
+
+/* 主役コピー（大きく主張） */
+.after-copy {
+  font-family: "Shippori Mincho B1", serif;
+  font-size: clamp(1.9rem, 3.2vw, 3rem);
+  line-height: 1.75;
+  letter-spacing: 0.05em;
+  text-align: right;
+  color: #2f2922;
+
+  opacity: 0;
+  transform: translateY(20px);
+  filter: blur(12px);
+  transition: 1.5s ease;
+}
+
+.after-section.is-visible .after-copy {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
+
+/* 主役説明（NOTE — 存在強め） */
+.after-note {
+  margin: 6.8vh 0 4vh;
+  font-size: 1rem;
+  line-height: 2.15;
+  letter-spacing: 0.06em;
+  text-align: right;
+  color: #464038;
+
+  opacity: 0;
+  transform: translateY(16px);
+  filter: blur(12px);
+  transition: 1.5s ease .1s;
+}
+
+.after-section.is-visible .after-note {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
+
+/* リスト（姿勢／具体性） */
+.after-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 5vh;
+
+  text-align: right;              /* ← 追加 */
+  font-size: 0.95rem;
+  line-height: 2.25;
+  letter-spacing: 0.08em;
+  color: #574f45;
+
+  opacity: 0;
+  transform: translateY(14px);
+  filter: blur(10px);
+  transition: 1.5s ease .2s;
+}
+
+.after-list li {
+  margin-bottom: 0.55em;
+}
+
+.after-section.is-visible .after-list {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
+
+
+
+/* =========================
+   SP 調整
+========================= */
+@media (max-width: 780px) {
+  .after-section {
+    padding: 18vh 0 12vh;
+  }
+
+  .after-inner {
+    padding: 0 8vw;
+  }
+
+  .after-copy {
+    font-size: 1.34rem;
+    line-height: 2.2;
+  }
+
+  .after-note,
+  .after-list {
+    font-size: 0.86rem;
+  }
+}

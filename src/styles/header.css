@@ -1,0 +1,38 @@
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 3vh 6vw;
+  z-index: 999;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .6s ease;
+}
+
+.site-header.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.header-mini {
+  display: flex;
+  gap: 2.2rem;
+  align-items: center;
+}
+
+.header-logo,
+.header-contact {
+  font-family: "Shippori Mincho B1", serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: rgba(0,0,0,0.38); /* ← さらに薄く */
+  text-decoration: none;
+  transition: opacity .3s ease;
+}
+
+.header-logo:hover,
+.header-contact:hover {
+  opacity: 0.65; /* ← 主張しすぎない */
+}
