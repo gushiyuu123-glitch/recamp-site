@@ -1,21 +1,105 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-       <!-- Google翻訳を完全無効化 -->
-    <meta name="google" content="notranslate" />
-    <title>recamp-site</title>
-  </head>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google" content="notranslate" />
+
+  <!-- ======================
+       BASIC SEO
+  ======================= -->
+  <title>Re:Camp | Outdoor Product Studio, Okinawa</title>
+
+  <meta
+    name="description"
+    content="Re:Camp は、屋外環境で使用されるプロダクトを一点ずつ設計・制作する小さなスタジオです。沖縄を拠点に、使用環境に合わせた長く使える道具づくりを行っています。"
+  />
+
+  <link rel="canonical" href="https://recamp-site.vercel.app/" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png">
+<link rel="manifest" href="/site.webmanifest">
+
+  <!-- ======================
+       OGP
+  ======================= -->
+  <meta property="og:title" content="Re:Camp | Outdoor Product Studio" />
+  <meta property="og:description" content="屋外環境に合わせたプロダクトを一点ずつ設計・制作する、小さなアウトドアスタジオ。" />
+  <meta property="og:url" content="https://recamp-site.vercel.app/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://recamp-site.vercel.app/ogp.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- ======================
+       JSON-LD（LocalBusiness）
+       実在性の証拠として最重要
+  ======================= -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Re:Camp",
+    "description": "屋外環境に合わせた道具を一点ずつ設計・制作するアウトドアスタジオ。",
+    "image": "https://recamp-site.vercel.app/ogp.png",
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "Okinawa"
+    },
+    "email": "info@recamp.jp",
+    "url": "https://recamp-site.vercel.app/"
+  }
+  </script>
+
+  <!-- favicon -->
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+
+</head>
+
+
   <body>
+    <!-- React Root -->
     <div id="root"></div>
+
+    <!-- =========================
+         React (Vite)
+    ========================== -->
     <script type="module" src="/src/main.jsx"></script>
-    <!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-<!-- jQuery Ripples (WebGL) -->
-<script src="https://unpkg.com/jquery.ripples/dist/jquery.ripples-min.js"></script>
+    <!-- =========================
+         jQuery（Ripples用）
+    ========================== -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
+    <!-- =========================
+         jQuery Ripples (WebGL)
+         ※ あほあほリップルは消さない
+    ========================== -->
+    <script src="https://unpkg.com/jquery.ripples/dist/jquery.ripples-min.js"></script>
+
+    <!-- =========================
+         Ripple 初期化
+         Hero 背景だけ・静かに
+    ========================== -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const heroBg = document.querySelector(".hero-bg");
+
+        if (!heroBg) return;
+        if (!window.jQuery || !jQuery(heroBg).ripples) return;
+
+        try {
+          jQuery(heroBg).ripples({
+            resolution: 256,
+            dropRadius: 20,
+            perturbance: 0.03,
+          });
+        } catch (e) {
+          console.warn("Ripples init failed:", e);
+        }
+      });
+    </script>
   </body>
 </html>
