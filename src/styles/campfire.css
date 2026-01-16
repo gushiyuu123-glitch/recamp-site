@@ -188,7 +188,7 @@
     z-index: 4;
 
     /* 最適位置：下すぎず、光源に重ならず */
-    transform: translate(20vh, 18vh);
+    transform: translate(0, 18vh);
 
     text-align: center;
     opacity: 0;
