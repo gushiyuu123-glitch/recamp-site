@@ -78,127 +78,42 @@
   pointer-events:none;
 }
 
-
 /* ============================================================
-   INTERLUDE – SP ONLY（完全分離）
+   INTERLUDE – SP ONLY（完全分離 / 最適化）
+   PC非干渉・SPのみ別作品化
 ============================================================ */
+@media (max-width: 768px) and (hover:none) and (pointer:coarse){
 
-/* SPではテキストを完全に非表示にする */
-@media (max-width: 900px){
-  .interlude-text{
-    display:none;
-  }
-
+  /* 高さを最適化：スマホ視野の黄金帯 */
   .interlude{
-    height:74svh;
-    padding:0 6vw;
+    height: 70svh;         /* 80vh → 70svh：圧を抜く */
+    padding: 0 7vw;        /* 端を少し広げて呼吸を作る */
+    background-position: center top 32%;
   }
 
+  /* 光を弱めて「間」の静寂を出す */
   .interlude::before{
     background:
       radial-gradient(
         ellipse at center,
-        rgba(246,243,234,0.48) 0%,
-        rgba(246,243,234,0.62) 40%,
-        rgba(241,235,220,0.82) 100%
+        rgba(246,243,234,0.34) 0%,
+        rgba(246,243,234,0.52) 38%,
+        rgba(241,235,220,0.74) 100%
       );
-  }
-}
-
-
-/* ============================================================
-   CAMPFIRE – PC ONLY（完全隔離）
-============================================================ */
-@media (min-width: 901px){
-
-  .campfire-copy-wrap {
-    position: relative;
-    z-index: 4;
-    opacity: 0;
-    filter: blur(10px);
-    transform: translate(-26vw, 15vh);
-    transform-origin: center;
-
-    transition:
-      opacity 2.4s ease,
-      filter 3.2s ease,
-      transform 3s cubic-bezier(0.16, 0.6, 0.3, 1);
+    filter: blur(4px);     /* SPは強すぎる光を抑える */
   }
 
-  .campfire.is-visible .campfire-copy-wrap{
-    opacity: 1;
-    filter: blur(0);
-    transform: translate(-26vw, 16vh) scale(1);
+  /* テキストは完全非表示
+     ※ PC構図とSP演出の世界観が違うため */
+  .interlude-text{
+    display: none !important;
+    opacity: 0 !important;
+    transform: none !important;
+    filter: none !important;
   }
 
-  .campfire-copy{
-    font-family: "Shippori Mincho B1", serif;
-    font-size: clamp(2.2rem, 4vw, 3.6rem);
-    letter-spacing: 0.16em;
-    line-height: 1.4;
-
-    color: rgba(255,235,215,0.9);
-    text-shadow: 0 0 18px rgba(255,160,90,0.15);
-
-    opacity: 0;
-    transform: translateY(28px) scale(0.97);
-    filter: blur(18px);
-
-    transition:
-      opacity 2.8s ease,
-      transform 2.8s cubic-bezier(0.16,0.6,0.3,1),
-      filter 3.8s ease;
-  }
-
-  .campfire.is-visible .campfire-copy{
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
-  }
-}
-
-
-/* ============================================================
-   CAMPFIRE – SP ONLY（完全分離）
-============================================================ */
-@media (max-width: 900px){
-
-  .campfire{
-    height:100svh;
-    filter:
-      brightness(0.68)
-      contrast(1.14)
-      saturate(0.88);
-  }
-
-  .campfire-copy-wrap-sp{
-    position: relative;
-    z-index: 4;
-    transform: translate(0, 12vh);
-    text-align: center;
-    opacity: 0;
-    filter: blur(10px);
-
-    transition:
-      opacity 2.4s ease,
-      filter 3.2s ease,
-      transform 3s cubic-bezier(0.16, 0.6, 0.3, 1);
-  }
-
-  .campfire.is-visible .campfire-copy-wrap-sp{
-    opacity:1;
-    filter:blur(0);
-    transform:translate(0,13vh);
-  }
-
-  .campfire-copy-sp{
-    font-family:"Shippori Mincho B1", serif;
-    font-size:clamp(1.9rem,7vw,2.6rem);
-    letter-spacing:0.10em;
-    line-height:1.45;
-    text-wrap:balance;
-
-    color:rgba(255,235,215,0.9);
-    text-shadow:0 0 18px rgba(255,160,90,0.15);
+  /* Canvas（淡い粒子or揺らぎ演出）はSPで少し弱める */
+  .interlude canvas{
+    opacity: 0.7;          /* そのままだとSPは濃く見えるため */
   }
 }

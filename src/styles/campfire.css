@@ -1,6 +1,6 @@
 /* =========================
    CAMPFIRE – Night Scene
-   重厚 / 静けさ / 温度
+   PC版（作品の核）
 ========================= */
 
 .campfire {
@@ -19,10 +19,8 @@
     saturate(0.90);
 }
 
-
 /* =========================
-   FIRE LIGHT – Air wobble glow
-   （炎で周囲の空気が揺れる光）
+   FIRE LIGHT – 揺らめく光
 ========================= */
 .campfire::before {
   content: "";
@@ -31,14 +29,13 @@
 
   background:
     radial-gradient(
-      circle at 46% 65%,         /* 位置を“焚き火の少し左寄り”に最適化 */
+      circle at 46% 65%,
       rgba(255,150,60,0.22),
       rgba(0,0,0,0.82)
     );
 
   mix-blend-mode: screen;
   animation: campfireLight 7.6s ease-in-out infinite;
-
   pointer-events: none;
   z-index: 1;
 }
@@ -51,7 +48,7 @@
 
 
 /* =========================
-   AUTO-SPARKS（自然に舞う火花）
+   AUTO-SPARKS（漂う火花）
 ========================= */
 
 .embers {
@@ -64,20 +61,17 @@
 .spark{
   position:absolute;
   border-radius:50%;
-  pointer-events:none;
   opacity:0;
 
-  /* 🔥 光の芯＋幻想グラデーション */
   background:
     radial-gradient(
       circle,
-      rgba(255,140,60,1) 0%,     /* 芯：赤橙 */
-      rgba(255,190,110,0.9) 35%, /* 金 */
+      rgba(255,140,60,1) 0%,
+      rgba(255,190,110,0.9) 35%,
       rgba(255,220,170,0.35) 55%,
       rgba(255,220,170,0.0) 80%
     );
 
-  /* 幻想の鍵 */
   mix-blend-mode: screen;
   filter:
     blur(1.5px)
@@ -89,23 +83,18 @@
 
 
 /* =========================
-   COPY – 焚火の光で浮く文字
-========================= */
-/* =========================
-   WRAP – 位置ごと浮かび上がる（薄いフェード）
+   COPY – PC版（空白含む詩的構図）
 ========================= */
 
 .campfire-copy-wrap {
   position: relative;
   z-index: 4;
 
-  /* 位置（自由に調整OK） */
+  /* PC特有の構図（左へ沈む） */
   transform: translate(-26vw, 15vh);
 
-  /* 登場前 */
   opacity: 0;
   filter: blur(10px);
-  transform-origin: center;
 
   transition:
     opacity 2.4s ease,
@@ -113,18 +102,11 @@
     transform 3s cubic-bezier(0.16, 0.6, 0.3, 1);
 }
 
-/* 表示（焚火に照らされるように） */
 .campfire.is-visible .campfire-copy-wrap {
   opacity: 1;
   filter: blur(0);
   transform: translate(-26vw, 16vh) scale(1);
 }
-
-
-
-/* =========================
-   COPY – 本文の “浮き上がり”
-========================= */
 
 .campfire-copy {
   font-family: "Shippori Mincho B1", serif;
@@ -133,9 +115,8 @@
   text-align: center;
 
   color: rgba(255, 235, 215, 0.9);
-  text-shadow: 0 0 18px rgba(255, 160, 90, 0.15);
+  text-shadow: 0 0 18px rgba(255,160,90,0.15);
 
-  /* 登場前（闇の底） */
   opacity: 0;
   transform: translateY(28px) scale(0.97);
   filter: blur(18px);
@@ -146,34 +127,33 @@
     filter 3.8s ease;
 }
 
-/* 表示：焚火の灯りで文字が浮かぶ */
 .campfire.is-visible .campfire-copy {
   opacity: 1;
   transform: translateY(0) scale(1);
   filter: blur(0);
 }
+/* ============================================================
+   CAMPFIRE – SP ONLY（完全独立 / PC非干渉）
+   条件：幅768以下 ＋ タッチデバイスのみ
+============================================================ */
+@media (max-width: 768px) and (hover:none) and (pointer:coarse){
 
-/* =======================================
-   CAMPFIRE – SP ONLY
-   ピークを壊さず成立させる
-   PC完全非干渉
-======================================= */
-@media (max-width: 900px){
-
+  /* ---- 背景 & 全体レイヤー ---- */
   .campfire{
-    height: 100svh; /* iOS対応 */
+    height: 100svh;
     filter:
       brightness(0.68)
       contrast(1.14)
       saturate(0.88);
+    background-position: center 68%;
   }
 
-  /* 炎の光：強度と範囲をSP向けに */
+  /* ---- 発光（SPでは弱め） ---- */
   .campfire::before{
     background:
       radial-gradient(
-        circle at 50% 68%,
-        rgba(255,150,60,0.18),
+        circle at 50% 72%,
+        rgba(255,150,60,0.16),
         rgba(0,0,0,0.88)
       );
     animation: campfireLightSP 9s ease-in-out infinite;
@@ -181,36 +161,62 @@
 
   @keyframes campfireLightSP {
     0%   { opacity: 0.10; filter: blur(12px); }
-    50%  { opacity: 0.22; filter: blur(22px); }
+    50%  { opacity: 0.20; filter: blur(22px); }
     100% { opacity: 0.12; filter: blur(14px); }
   }
 
-  /* 火花：数と存在感を抑える */
+  /* ---- 火花（密度抑え） ---- */
   .spark{
     filter:
       blur(1px)
-      drop-shadow(0 0 4px rgba(255,180,120,0.35))
-      drop-shadow(0 0 10px rgba(255,140,60,0.18));
+      drop-shadow(0 0 4px rgba(255,180,120,0.32))
+      drop-shadow(0 0 10px rgba(255,140,60,0.16));
   }
 
-  /* コピー位置：中央へ */
-  .campfire-copy-wrap{
-    transform: translate(0, 12vh);
+  /* ---- PCコピー → 完全に消す ---- */
+  .pc-copy{
+    display: none !important;
+    opacity: 0 !important;
+    transform: none !important;
+    filter: none !important;
+    pointer-events: none !important;
+  }
+
+  /* ---- SPコピー（唯一の主役） ---- */
+  .campfire-copy-wrap-sp{
+    position: relative;
+    z-index: 4;
+
+    /* 最適位置：下すぎず、光源に重ならず */
+    transform: translate(20vh, 18vh);
+
     text-align: center;
+    opacity: 0;
+    filter: blur(10px);
+
+    transition:
+      opacity 2.4s ease,
+      filter 3.2s ease,
+      transform 3s cubic-bezier(0.16, 0.6, 0.3, 1);
   }
 
-  .campfire.is-visible .campfire-copy-wrap{
-    transform: translate(0, 13vh) scale(1);
+  .campfire.is-visible .campfire-copy-wrap-sp{
+    opacity:1;
+    filter:blur(0);
+    transform:translate(0, 19vh);
   }
 
-  /* コピー本体：SP用文字密度 */
-  .campfire-copy{
+  /* ---- SPコピー本体 ---- */
+  .campfire-copy-sp{
+    font-family:"Shippori Mincho B1", serif;
     font-size: clamp(1.9rem, 7vw, 2.6rem);
     letter-spacing: 0.10em;
     line-height: 1.45;
+    text-wrap: balance;
     max-width: 90%;
     margin: 0 auto;
 
-    text-wrap: balance;
+    color: rgba(255,235,215,0.92);
+    text-shadow: 0 0 18px rgba(255,160,90,0.15);
   }
 }
