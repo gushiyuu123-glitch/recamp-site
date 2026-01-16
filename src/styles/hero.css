@@ -87,3 +87,47 @@
   animation:fadeIn 3s ease forwards;
   animation-delay:1s;
 }
+/* =======================================
+   HERO – SP ONLY
+   PCは一切干渉しない
+======================================= */
+@media (max-width: 768px) {
+
+  .hero {
+    height: 100svh; /* iOS対応 */
+    align-items: center;
+    justify-content: center;
+    padding: 0 6vw;
+    text-align: center;
+  }
+
+  .hero-content {
+    max-width: 90%;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(2.2rem, 7vw, 2.6rem);
+    letter-spacing: 0.08em;
+    text-shadow: 0 0 25px rgba(255,200,120,0.28);
+  }
+
+  .hero-content p {
+    margin-top: 0.8rem;
+    font-size: 0.90rem;            /* ← 少し小さめに */
+    line-height: 2.1;
+    opacity: 0.85;
+    
+    
+  }
+
+  /* 縦組みコピーはSPでは消す */
+  .vertical-text {
+    display: none;
+  }
+
+  /* 背景のスケールを少し抑えて酔い防止 */
+  .hero-bg {
+    transform: scale(1.01);
+    filter: brightness(0.88) contrast(1.03);
+  }
+}

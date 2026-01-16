@@ -116,13 +116,81 @@
   background: rgba(0,0,0,0.035);
 }
 
-/* SP */
-@media (max-width: 780px) {
-  .contact-section {
-    padding: 16vh 0 14vh;
+/* ======================================
+   CONTACT — SP REFINEMENT（完全PC非干渉）
+====================================== */
+
+@media (max-width: 780px){
+
+  /* SECTION */
+  .contact-section{
+    padding: 14vh 0 12vh;         /* 16 → 14：読み切りテンポ */
   }
 
-  .contact-lead {
+  .contact-inner{
+    padding: 0 7vw;               /* わずかに広げて視野安定 */
+  }
+
+  /* EYEBROW */
+  .contact-eyebrow{
+    font-size: 0.58rem;
+    letter-spacing: 0.38em;       /* 少し詰めて可読性UP */
+    margin-bottom: 2vh;
+  }
+
+  /* TITLE（改行禁止のまま視野に収める） */
+  .contact-title{
+    font-size: 1.32rem;           /* SP視野の黄金比 */
+    letter-spacing: 0.095em;
+    line-height: 1.65;
+
+    white-space: nowrap;          /* ← PC同様キープ */
+    overflow: hidden;             /* ← はみ出し防止 */
+    text-overflow: ellipsis;      /* ← 長い場合の緊急措置 */
+
+    margin-bottom: 4.6vh;
+    transform: translateY(16px);
+    filter: blur(12px);
+  }
+
+  /* LEAD */
+  .contact-lead{
+    font-size: 0.84rem;
+    line-height: 2.15;
+    letter-spacing: 0.055em;
+
     margin-bottom: 6vh;
   }
+
+  /* FORM */
+  .contact-form{
+    padding-top: 5.8vh;           /* 若干詰める */
+  }
+
+  /* FIELD */
+  .contact-field{
+    margin-bottom: 4.2vh;
+  }
+
+  .contact-field label{
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    margin-bottom: 1vh;
+  }
+
+  /* INPUT ＆ TEXTAREA */
+  .contact-field input,
+  .contact-field textarea{
+    font-size: 0.84rem;
+    padding: 0.75rem 0;           /* 触感UP（SP指幅に最適化） */
+  }
+
+  /* SUBMIT */
+  .contact-submit{
+    margin-top: 6vh;
+    padding: 0.9rem 2.6rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+  }
+
 }

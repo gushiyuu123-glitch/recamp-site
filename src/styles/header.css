@@ -1,3 +1,6 @@
+/* =======================================
+   PC版（触らない）
+======================================= */
 .site-header {
   position: fixed;
   top: 0;
@@ -27,12 +30,38 @@
   font-family: "Shippori Mincho B1", serif;
   font-size: 0.75rem;
   letter-spacing: 0.2em;
-  color: rgba(0,0,0,0.38); /* ← さらに薄く */
+  color: rgba(0,0,0,0.38);
   text-decoration: none;
   transition: opacity .3s ease;
 }
 
 .header-logo:hover,
 .header-contact:hover {
-  opacity: 0.65; /* ← 主張しすぎない */
+  opacity: 0.65;
+}
+
+/* =======================================
+   SP専用最適化（PCには一切干渉しない）
+======================================= */
+@media (max-width: 768px) {
+
+  .site-header {
+    padding: 2vh 5vw; /* 余白を最適化 */
+  }
+
+  .header-mini {
+    gap: 1.2rem; /* スマホは詰める */
+  }
+
+  .header-logo,
+  .header-contact {
+    font-size: 0.85rem; /* 少し大きくして押しやすく */
+    letter-spacing: 0.12em; /* 字間をスマホ最適化 */
+    color: rgba(0,0,0,0.45); /* 少し濃く、視認性確保 */
+  }
+
+  .header-logo:hover,
+  .header-contact:hover {
+    opacity: 0.55; /* 少し強めのフィードバック */
+  }
 }

@@ -186,3 +186,103 @@
   .dawn-fog{ animation:none; }
   .dawn.is-visible .dawn-copy{ animation:none; }
 }
+/* ======================================
+   SP OPTIMIZE — Dawn (PC完全非干渉)
+   対象：~768px
+====================================== */
+
+@media (max-width: 768px){
+
+  /* ===============================
+     SECTION BASE
+  =============================== */
+
+  .dawn{
+    height:100svh;        /* iOS対策：実視野 */
+    min-height:100svh;
+    background-position: center top; /* 主題を上に */
+  }
+
+  /* ===============================
+     COPY LAYOUT（最重要）
+  =============================== */
+
+  .dawn-inner{
+    align-items:flex-start;
+    justify-content:center;
+  }
+
+  .dawn-copy-wrap{
+    /* PC指定を完全上書き */
+    transform:none;
+
+    position:absolute;
+    left:50%;
+    top:38svh;            /* 視線の黄金帯 */
+    transform:translateX(-50%);
+    width:86vw;
+    text-align:center;
+  }
+
+  /* ===============================
+     COPY TYPOGRAPHY
+  =============================== */
+
+  .dawn-copy{
+    font-size:clamp(1.45rem, 6vw, 1.9rem);
+    letter-spacing:0.12em;
+    line-height:1.75;
+
+    text-shadow:
+      0 0 10px rgba(255,200,140,0.08),
+      0 0 22px rgba(255,200,140,0.05);
+  }
+
+  /* ===============================
+     LIGHT VEIL（SPは軽く）
+  =============================== */
+
+  .dawn::before{
+    inset:-4%;
+    filter:blur(18px);
+    background:
+      radial-gradient(
+        circle at 65% 18%,
+        rgba(255,205,140,0.26),
+        rgba(255,205,140,0.00) 56%
+      ),
+      radial-gradient(
+        circle at 50% 52%,
+        rgba(170,200,220,0.08),
+        rgba(0,0,0,0.00) 60%
+      );
+  }
+
+  /* ===============================
+     FOG（SPは重さ回避）
+  =============================== */
+
+  .dawn-fog{
+    inset:-6%;
+    filter:blur(16px);
+    background:
+      radial-gradient(circle at 30% 65%, rgba(255,255,255,0.045), rgba(255,255,255,0.00) 54%),
+      radial-gradient(circle at 70% 48%, rgba(255,255,255,0.04), rgba(255,255,255,0.00) 58%),
+      linear-gradient(180deg, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.28) 50%, rgba(0,0,0,0.48) 100%);
+  }
+
+  /* ===============================
+     ANIMATION 微調整（SP酔い防止）
+  =============================== */
+
+  .dawn.is-visible .dawn-copy{
+    animation-delay: 2.6s; /* 体感テンポ調整 */
+  }
+
+  @keyframes dawnFog{
+    0%   { transform:translate3d(-0.8%, 0.2%, 0) scale(1.01); }
+    50%  { transform:translate3d( 0.9%, -0.2%, 0) scale(1.02); }
+    100% { transform:translate3d(-0.8%, 0.2%, 0) scale(1.01); }
+  }
+
+}

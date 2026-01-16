@@ -17,19 +17,30 @@ export default function Campfire() {
     return () => io.disconnect();
   }, []);
 
-  // 🔥 火花（Hookを正しい場所で呼ぶ）
+  // 🔥 火花
   useCampfireEmbers(emberRef);
 
   return (
     <section className="campfire" ref={sectionRef}>
       <div className="embers" ref={emberRef}></div>
 
-<div className="campfire-copy-wrap">
-  <p className="campfire-copy">
-    夜の静けさと、<br></br>　　　　　　　ひとつの灯り。
-  </p>
-</div>
+      {/* =========================
+          PC ONLY
+      ========================= */}
+      <div className="campfire-copy-wrap hidden md:block">
+        <p className="campfire-copy">
+          夜の静けさと、<br />　　　　　　　ひとつの灯り。
+        </p>
+      </div>
 
+      {/* =========================
+          SP ONLY
+      ========================= */}
+      <div className="campfire-copy-wrap-sp block md:hidden">
+        <p className="campfire-copy-sp">
+          夜の静けさと、<br />ひとつの灯り。
+        </p>
+      </div>
     </section>
   );
 }

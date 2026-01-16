@@ -185,3 +185,86 @@
     height:6vh;
   }
 }
+/* =======================================
+   ABOUT – SP ONLY
+   PCには一切干渉しない
+======================================= */
+@media (max-width: 900px) {
+
+  .about{
+    display: block;               /* ← 左右分割を解除 */
+    min-height: auto;
+    overflow: visible;
+    padding: 10vh 0 12vh;
+  }
+
+  /* ====== LEFT（紙） → SPは全幅にする ====== */
+  .about-paper{
+    padding: 12vh 8vw;            /* ← 18vh 10vw は大きすぎる */
+    box-shadow: none;             /* ← 仕切り線は不要になる */
+  }
+
+  /* ====== タイトル（縦書き → 横書きへ） ====== */
+  .about-definition h2{
+    writing-mode: horizontal-tb;
+    rotate: 0deg;
+    font-size: 2rem;
+    letter-spacing: 0.12em;
+    margin-bottom: 2.6rem;
+
+    transform: translateY(18px) !important;
+    opacity: 0;
+  }
+
+  .about.is-visible .about-definition h2{
+    transform: translateY(0) !important;
+    opacity: 1;
+  }
+
+  /* ====== INNER（縦並びに） ====== */
+  .about-inner{
+    display: block;
+    gap: 0;
+  }
+
+  /* ====== テキスト ====== */
+  .about-content{
+    max-width: 100%;
+    font-size: 0.98rem;
+    line-height: 1.9;
+    transform: none;
+    margin-top: 1.8rem;
+  }
+
+  .about-content .lead{
+    font-size: 1.08rem;
+    margin-bottom: 2.2rem;
+  }
+
+  /* ====== 森レイヤー（マスク調整） ====== */
+  .about::before{
+    opacity: 0.72;
+    -webkit-mask-image:
+      linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 20%,
+        black 70%,
+        transparent 100%
+      );
+    mask-image:
+      linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 25%,
+        black 70%,
+        transparent 100%
+      );
+  }
+
+  /* ====== 下部の光調整 ====== */
+  .about::after{
+    height: 8vh;
+    opacity: 0.7;
+  }
+}

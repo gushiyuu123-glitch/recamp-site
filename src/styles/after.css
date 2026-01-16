@@ -112,25 +112,85 @@
 
 
 
-/* =========================
-   SP 調整
-========================= */
+/* ======================================
+   AFTER — SP ADVANCED OPTIMIZE
+   PCは触らず、SPだけ整える
+====================================== */
+
 @media (max-width: 780px) {
+
+  /* =========================
+       SECTION BASE
+  ========================= */
+
   .after-section {
-    padding: 18vh 0 12vh;
+    padding: 14vh 0 10vh;            /* 読むテンポに最適化 */
+    background-position: center top; /* 主題を上へ */
   }
+
+  /* =========================
+       INNER（レイアウト再構築）
+  ========================= */
 
   .after-inner {
-    padding: 0 8vw;
+    padding: 0 7vw;
+    align-items: flex-start;         /* ← 右寄せを解除 */
+    text-align: left;                /* 子要素に継承 */
   }
+
+  /* =========================
+       COPY
+  ========================= */
 
   .after-copy {
-    font-size: 1.34rem;
-    line-height: 2.2;
+    font-size: 1.42rem;
+    line-height: 2.15;
+    letter-spacing: 0.04em;
+
+    text-align: left;                /* ← 主体性を左に */
+    max-width: 88vw;                 /* 行の暴れ防止 */
   }
 
+  /* =========================
+       NOTE（説明文）
+  ========================= */
+
+  .after-note {
+    margin: 5.4vh 0 3.6vh;
+    font-size: 0.90rem;
+    line-height: 2.1;
+
+    text-align: left;
+    max-width: 90vw;
+  }
+
+  /* =========================
+       LIST（具体性ブロック）
+  ========================= */
+
+  .after-list {
+    font-size: 0.88rem;
+    line-height: 2.2;
+    letter-spacing: 0.07em;
+
+    text-align: left;                /* 右寄せを解除 */
+    max-width: 92vw;
+    margin-bottom: 6vh;
+  }
+
+  .after-list li {
+    margin-bottom: 0.65em;
+  }
+
+  /* =========================
+       ANIMATION（SPテンポ補正）
+  ========================= */
+
+  .after-copy,
   .after-note,
   .after-list {
-    font-size: 0.86rem;
+    transform: translateY(18px);     /* 動き量軽減 */
+    filter: blur(10px);              /* 主張を抑える */
   }
 }
+

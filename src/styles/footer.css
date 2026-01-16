@@ -58,20 +58,51 @@
 .footer-credit:hover {
   opacity: 0.9;
 }
+/* ======================================
+   FOOTER — SP FINAL QUIET TUNING
+   PC完全非干渉
+====================================== */
 
-/* SP */
-@media (max-width: 780px) {
-  .footer {
-    padding: 12vh 0 8vh;
+@media (max-width: 780px){
+
+  /* SECTION */
+  .footer{
+    padding: 10vh 0 7vh;            /* 12 → 10：余韻を詰める */
+    border-top-color: rgba(0,0,0,0.03);
   }
 
-  .footer-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4vh;
+  /* INNER */
+  .footer-inner{
+    padding: 0 7vw;
+    gap: 3.6vh;                     /* 呼吸をわずかに収束 */
   }
 
-  .footer-right {
+  /* LEFT（実在感） */
+  .footer-left{
+    gap: 1.1vh;                     /* SPは縦リズムを少し強化 */
+  }
+
+  .footer-name{
+    font-size: 0.82rem;
+    letter-spacing: 0.20em;
+    color: #332e26;                 /* 黒をほんの少し薄く */
+  }
+
+  .footer-meta{
+    font-size: 0.70rem;
+    letter-spacing: 0.055em;
+    opacity: 0.78;
+  }
+
+  /* RIGHT（署名） */
+  .footer-right{
     align-self: flex-end;
   }
+
+  .footer-credit{
+    font-size: 0.66rem;
+    letter-spacing: 0.16em;
+    opacity: 0.55;
+  }
+
 }

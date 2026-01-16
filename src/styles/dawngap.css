@@ -22,10 +22,31 @@
       rgba(255,255,255,1) 100%
     );
 }
+/* ======================================
+   DAWN GAP — SP Refinement
+   PC完全非干渉
+====================================== */
 
-/* SP */
-@media (max-width: 780px) {
-  .dawn-gap {
-    height: 18vh;
+@media (max-width: 780px){
+
+  .dawn-gap{
+    height:16vh; /* 18 → 16：間延び防止 */
+
+    background:
+      /* Dawn の残光（SPはさらに薄く） */
+      radial-gradient(
+        circle at 50% 26%,
+        rgba(255,255,255,0.20) 0%,
+        rgba(245,247,248,0.12) 48%,
+        rgba(255,255,255,0.90) 100%
+      ),
+      /* 境界の溶解（白を主張させない） */
+      linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.94) 0%,
+        rgba(255,255,255,0.975) 55%,
+        rgba(255,255,255,1) 100%
+      );
   }
+
 }

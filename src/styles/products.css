@@ -290,34 +290,133 @@
   border-color:rgba(47,42,33,0.45);
   background:rgba(47,42,33,0.03);
 }
-
-/* =========================
-   RESPONSIVE
-========================= */
-
+/* =======================================
+   PRODUCTS – SP COMPLETE OPTIMIZATION
+   PCには完全非干渉
+======================================= */
 @media (max-width: 900px){
 
+  /* =========================
+     セクション全体
+  ========================== */
   .products{
-    padding:14vh 6vw;
+    padding: 12vh 6vw 10vh;   /* 28vh → 12vh に最適化 */
+  }
+
+  /* =========================
+     INTRO
+  ========================== */
+  .products-intro,
+  .products-title,
+  .products-lead{
+    animation: none;          /* 呼吸アニメーション停止（揺れ抑制） */
+  }
+
+  .products-intro{
+    margin: 4vh auto 10vh;
   }
 
   .products-title{
-    font-size:2.1rem;
+    font-size: clamp(1.8rem, 6vw, 2.2rem);
+    letter-spacing: 0.06em;
+    margin-bottom: 1rem;
   }
 
+  .products-lead{
+    font-size: 0.95rem;
+    line-height: 2.0;
+    letter-spacing: 0.02em;
+    opacity: 0.85;
+    text-wrap: balance;
+  }
+
+  /* =========================
+     LIST
+  ========================== */
   .products-list{
-    gap:12vh;
+    gap: 10vh;                /* 14vh → 10vh */
   }
 
+  /* =========================
+     PRODUCT CARD
+  ========================== */
   .product-card,
   .product-card:nth-child(even){
-    grid-template-columns:1fr;
-    gap:5vh;
-    text-align:center;
-    margin:3vh 0;
+    grid-template-columns: 1fr; /* 完全縦並び */
+    gap: 5vh;
+    text-align: center;
+    margin: 3vh 0;
   }
 
   .product-info{
-    max-width:100%;
+    max-width: 100%;
+  }
+
+  /* =========================
+     画像
+  ========================== */
+  .product-image img{
+    border-radius: 999px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.10);
+    transition: none;         /* hover削除で軽量化 */
+    filter: brightness(.96);
+  }
+
+  .product-image img:hover{
+    transform: none;
+    filter: brightness(.96);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.10);
+  }
+
+  /* =========================
+     テキスト
+  ========================== */
+  .product-name{
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .product-desc{
+    font-size: 0.92rem;
+    line-height: 2.0;
+    opacity: 0.88;
+    letter-spacing: 0.02em;
+    text-wrap: balance;
+    margin-bottom: 1.6rem;
+  }
+
+  .product-spec li{
+    font-size: 0.82rem;
+    padding: .55rem 0;
+  }
+
+  .product-meta{
+    font-size: 0.75rem;
+    line-height: 1.9;
+    letter-spacing: 0.04em;
+    margin-top: 1rem;
+  }
+
+  /* =========================
+     OUTRO / CTA
+  ========================== */
+  .products-outro{
+    margin-top: 10vh;
+    text-align: center;
+  }
+
+  .products-outro-text{
+    font-size: 0.9rem;
+    line-height: 2.2;
+    letter-spacing: 0.04em;
+    opacity: 0.6;
+  }
+
+  .products-cta{
+    display: inline-block;
+    padding: 1rem 2.8rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    border-radius: 999px;
   }
 }

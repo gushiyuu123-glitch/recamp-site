@@ -1,7 +1,7 @@
-/* =========================
+/* ============================================================
    INTERLUDE – PHILOSOPHY
-   Paper × Forest × Water
-========================= */
+   PC版（変更なし）
+============================================================ */
 
 .interlude{
   position:relative;
@@ -11,7 +11,6 @@
   justify-content:center;
   overflow:hidden;
 
-  /* 水面になる背景 */
   background-image:
     linear-gradient(
       rgba(255,255,255,0.04),
@@ -25,10 +24,6 @@
   background-color:#f1ebdc;
 }
 
-/* =========================
-   PAPER VEIL
-========================= */
-
 .interlude::before{
   content:"";
   position:absolute;
@@ -41,15 +36,9 @@
       rgba(246,243,234,0.58) 40%,
       rgba(241,235,220,0.78) 100%
     );
-
   pointer-events:none;
   z-index:1;
 }
-
-
-/* =========================
-   COPY – FROM WATER TO AIR
-========================= */
 
 .interlude-text{
   position:relative;
@@ -57,14 +46,13 @@
 
   font-family:"Shippori Mincho B1", serif;
   font-size:clamp(2.8rem, 5vw, 5.6rem);
-  letter-spacing: 0.20em; /* 0.22 → 0.20 */
+  letter-spacing:0.20em;
   line-height:1.35;
   text-align:center;
 
   color:rgba(60,55,45,0.92);
 
-  text-shadow:
-    0 0 18px rgba(200,180,130,0.16);
+  text-shadow: 0 0 18px rgba(200,180,130,0.16);
 
   opacity:0;
   filter:blur(12px);
@@ -74,20 +62,14 @@
     opacity 2.2s ease,
     transform 2.2s ease,
     filter 2.8s ease;
-
   transition-delay: 0.2s;
 }
 
 .interlude.is-visible .interlude-text{
   opacity:1;
   filter:blur(0);
-  transform:translateY(0);
-  transform:translateX(27px);
+  transform:translateY(0) translateX(27px);
 }
-
-/* =========================
-   RIPPLE CANVAS
-========================= */
 
 .interlude canvas{
   position:absolute !important;
@@ -96,17 +78,127 @@
   pointer-events:none;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
 
-@media (max-width:900px){
-  .interlude{
-    height:70vh;
+/* ============================================================
+   INTERLUDE – SP ONLY（完全分離）
+============================================================ */
+
+/* SPではテキストを完全に非表示にする */
+@media (max-width: 900px){
+  .interlude-text{
+    display:none;
   }
 
-  .interlude-text{
-    font-size:clamp(2.2rem, 6vw, 3.8rem);
-    letter-spacing:0.16em;
+  .interlude{
+    height:74svh;
+    padding:0 6vw;
+  }
+
+  .interlude::before{
+    background:
+      radial-gradient(
+        ellipse at center,
+        rgba(246,243,234,0.48) 0%,
+        rgba(246,243,234,0.62) 40%,
+        rgba(241,235,220,0.82) 100%
+      );
+  }
+}
+
+
+/* ============================================================
+   CAMPFIRE – PC ONLY（完全隔離）
+============================================================ */
+@media (min-width: 901px){
+
+  .campfire-copy-wrap {
+    position: relative;
+    z-index: 4;
+    opacity: 0;
+    filter: blur(10px);
+    transform: translate(-26vw, 15vh);
+    transform-origin: center;
+
+    transition:
+      opacity 2.4s ease,
+      filter 3.2s ease,
+      transform 3s cubic-bezier(0.16, 0.6, 0.3, 1);
+  }
+
+  .campfire.is-visible .campfire-copy-wrap{
+    opacity: 1;
+    filter: blur(0);
+    transform: translate(-26vw, 16vh) scale(1);
+  }
+
+  .campfire-copy{
+    font-family: "Shippori Mincho B1", serif;
+    font-size: clamp(2.2rem, 4vw, 3.6rem);
+    letter-spacing: 0.16em;
+    line-height: 1.4;
+
+    color: rgba(255,235,215,0.9);
+    text-shadow: 0 0 18px rgba(255,160,90,0.15);
+
+    opacity: 0;
+    transform: translateY(28px) scale(0.97);
+    filter: blur(18px);
+
+    transition:
+      opacity 2.8s ease,
+      transform 2.8s cubic-bezier(0.16,0.6,0.3,1),
+      filter 3.8s ease;
+  }
+
+  .campfire.is-visible .campfire-copy{
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+
+/* ============================================================
+   CAMPFIRE – SP ONLY（完全分離）
+============================================================ */
+@media (max-width: 900px){
+
+  .campfire{
+    height:100svh;
+    filter:
+      brightness(0.68)
+      contrast(1.14)
+      saturate(0.88);
+  }
+
+  .campfire-copy-wrap-sp{
+    position: relative;
+    z-index: 4;
+    transform: translate(0, 12vh);
+    text-align: center;
+    opacity: 0;
+    filter: blur(10px);
+
+    transition:
+      opacity 2.4s ease,
+      filter 3.2s ease,
+      transform 3s cubic-bezier(0.16, 0.6, 0.3, 1);
+  }
+
+  .campfire.is-visible .campfire-copy-wrap-sp{
+    opacity:1;
+    filter:blur(0);
+    transform:translate(0,13vh);
+  }
+
+  .campfire-copy-sp{
+    font-family:"Shippori Mincho B1", serif;
+    font-size:clamp(1.9rem,7vw,2.6rem);
+    letter-spacing:0.10em;
+    line-height:1.45;
+    text-wrap:balance;
+
+    color:rgba(255,235,215,0.9);
+    text-shadow:0 0 18px rgba(255,160,90,0.15);
   }
 }

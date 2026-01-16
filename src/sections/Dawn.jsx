@@ -33,8 +33,6 @@ export default function Dawn() {
           <p className="dawn-copy">「気づけば、世界はもう少し明るい。」</p>
         </div>
       </div>
-      <div className="dawn-end"></div>
-
     </section>
   );
 }
